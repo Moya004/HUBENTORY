@@ -1,6 +1,7 @@
 import './Login.css'; 
+import React from 'react';
 
-export default function login(){
+const Login:React.FC = () => {
     return (
         <div>
             <form className="login-form">
@@ -14,5 +15,8 @@ export default function login(){
                 <button type="submit">login</button>
             </form>
         </div>
-    );
+    );    
 }
+
+// revisa no entinedo porque me genera errores honestamente
+export default Login;
