@@ -5,6 +5,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from security import seguridad, modelos_seguridad as mds
 from config import ACCESS_TOKEN_EXPIRE_MINUTES
 from security.autenticacion import  authenticate_user as auth, db, get_current_active_user, get_current_user
+from security.modelos_seguridad import User
 
 
 router = APIRouter()
