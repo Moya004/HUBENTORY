@@ -1,5 +1,5 @@
 from security import seguridad
-from modelos_seguridad import User, UserInBD, TokenData
+from modelos_seguridad import Persona, UserInBD, TokenData
 from fastapi import Depends, HTTPException, status
 from jose import jwt, JWTError
 
@@ -52,7 +52,7 @@ async def get_current_user(token:str = Depends(seguridad.oauth2_scheme)):
         raise credentials_exception
     return user
 
-async def get_current_active_user(curr_user: User = Depends(get_current_user)):
+async def get_current_active_user(curr_user: Persona = Depends(get_current_user)):
     if curr_user.isDisable:
         raise HTTPException(status_code=400, detail='Inactive user')
     return curr_user

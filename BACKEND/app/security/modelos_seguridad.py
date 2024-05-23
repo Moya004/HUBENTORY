@@ -1,18 +1,18 @@
-from pydantic import BaseModel
+from db.Session import Base
 
-class Token(BaseModel):
+class Token(Base):
     access_token: str
     token_type : str
 
 
-class TokenData(BaseModel):
+class TokenData(Base):
     username: str | None = None
 
-class User(BaseModel):
+class Persona(Base):
     username:  str
     iD: str | None = None
     fullname: str | None = None
     isDisable: bool = False
 
-class UserInBD(User):
+class UserInBD(Persona):
     hashed_password: str
