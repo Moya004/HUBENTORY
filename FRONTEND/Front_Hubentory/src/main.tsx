@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+// import App from './App.tsx'
 import './index.css'
 import Login from './routesViews/Login.tsx'
 import SingUp from './routesViews/SingUp.tsx'
-import DashBoard from './routesViews/DashBoard.tsx'
+import Products from './routesViews/Products.tsx'
+import Reports from './routesViews/Reports.tsx'
 import ProtectedRoutes from './routesViews/ProtectedRoutes.tsx'
 import { AuthProvider } from './Auth/AuthProvider.tsx'
 
@@ -28,9 +29,13 @@ const router = createBrowserRouter([
     // propiedad que solicita un arreglo
     children: [
       {
-        path:"/dashboard",
-        element: <DashBoard />,
+        path:"/Products",
+        element: <Products />,
       },
+      {
+        path:"/Reports",
+        element: <Reports />,
+      }
     ],
   },
 ]);
