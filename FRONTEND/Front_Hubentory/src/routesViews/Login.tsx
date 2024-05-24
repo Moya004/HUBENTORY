@@ -12,7 +12,9 @@ const Login:React.FC = () => {
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" />
 
-                <button type="submit">login</button>
+                <button type="submit">Iniciar sesion</button>
+
+                <button type="submit" className='singup'>Registrarse</button>
             </form>
         </div>
     );    
