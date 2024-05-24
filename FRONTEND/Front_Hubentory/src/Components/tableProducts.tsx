@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../Components/stylestable.css';
 
 const DataTable: React.FC = () => {
   // Datos de ejemplo
@@ -25,30 +26,29 @@ const DataTable: React.FC = () => {
   );
 
   return (
-    <div>
+    <div className="data-table-container">
       <input
         type="text"
         placeholder="Buscar..."
         value={searchTerm}
         onChange={handleSearch}
-        style={{ marginBottom: '1rem', padding: '0.5rem' }}
       />
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <table className="data-table">
         <thead>
-          <tr style={{ backgroundColor: '#f2f2f2' }}>
-            <th style={{ padding: '0.5rem' }}>Seleccionar</th>
-            <th style={{ padding: '0.5rem' }}>Nombre</th>
-            <th style={{ padding: '0.5rem' }}>Categoría</th>
-            <th style={{ padding: '0.5rem' }}>Cantidad</th>
+          <tr>
+            <th>Seleccionar</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
           </tr>
         </thead>
         <tbody>
           {filteredData.map((item: any) => (
-            <tr key={item.id} style={{ borderBottom: '1px solid #ddd' }}>
-              <td style={{ padding: '0.5rem' }}><input type="checkbox" /></td>
-              <td style={{ padding: '0.5rem' }}>{item.name}</td>
-              <td style={{ padding: '0.5rem' }}>{item.category}</td>
-              <td style={{ padding: '0.5rem' }}>{item.quantity}</td>
+            <tr key={item.id}>
+              <td><input type="checkbox" /></td>
+              <td>{item.name}</td>
+              <td>{item.category}</td>
+              <td>{item.quantity}</td>
             </tr>
           ))}
         </tbody>
