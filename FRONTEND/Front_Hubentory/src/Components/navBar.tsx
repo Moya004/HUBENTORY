@@ -4,6 +4,7 @@ import ocultarNavBarImg from '../assets/hideNavbarImage.png';
 import mostrarNavBarImg from '../assets/hideNavbarImage.png';
 import ocultarLinksImg from '../assets/hideLinks.png';
 import mostrarLinksImg from '../assets/showlinks.png';
+import closing from '../assets/closing.png';
 import '../Components/stylesNavBar.css';
 
 interface NavBarProps {
@@ -32,6 +33,10 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
                     <button className='btnnavbar' onClick={toggleNavbarVisibility}>
                         <img src={navbarVisible ? ocultarNavBarImg : mostrarNavBarImg} alt="Toggle Navbar" />
                     </button>
+                    
+                    <button className='btnclosing'>
+                        <img src={closing} alt="Cerrar sesión" />
+                    </button>
                     <nav>
                         <ul className="links-list" style={{ display: linksVisible ? 'block' : 'none', padding: 0, margin: 0 }}>
                             <li className="products-link" style={{ marginBottom: '1rem' }}>
@@ -40,6 +45,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
                             <li className="reports-link" style={{ marginBottom: '1rem' }}>
                                 <Link to="/Reports">Informes</Link>
                             </li>
+                            {linksVisible && <div className='line'></div>}
                         </ul>
                     </nav>
                     <main>{children}</main>
@@ -51,7 +57,8 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
                         <img src={navbarVisible ? ocultarNavBarImg : mostrarNavBarImg}  alt="Toggle Navbar" />
                     </button>
                 </div>
-            )}
+
+            )}            
         </div>
     );
 };
