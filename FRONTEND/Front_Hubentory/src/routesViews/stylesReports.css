@@ -1,7 +1,7 @@
 .logo-hub{
     width: 160px;
     height: auto;
-    position: relative;
-    top: -3vh;
-    left: -1vh;
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
 }
