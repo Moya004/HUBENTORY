@@ -38,3 +38,14 @@
     background-color: #0056b3;
   }
   
+  .login-form button.singup{
+    background-color: transparent; 
+    border: none; 
+    color: #000000;
+    text-decoration: underline; 
+    padding: 0; 
+  }
+
+  .login-form button.singup:hover{
+    color: #0056b3;
+  }
