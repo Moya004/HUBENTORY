@@ -1,10 +1,12 @@
-import NavBar from "../layout/navBar";
+import NavBar from "../Components/navBar";
+import logo from '../assets/logo.png';
+import './stylesReports.css';
 
 export default function  Reports(){
     return (
         <>
             <NavBar>
-                <h1>vista de informes</h1>
+                <img className="logo-hub" src={logo}></img>
             </NavBar>
         </>
 
