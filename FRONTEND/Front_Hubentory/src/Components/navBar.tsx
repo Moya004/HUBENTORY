@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ocultarNavBarImg from '../assets/hideNavbarImage.png';
-import mostrarNavBarImg from '../assets/hideNavbarImage.png';
+import mostrarNavBarImg from '../assets/showNavbarImage.png';
 import ocultarLinksImg from '../assets/hideLinks.png';
 import mostrarLinksImg from '../assets/showlinks.png';
 import closing from '../assets/closing.png';
