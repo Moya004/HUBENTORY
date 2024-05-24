@@ -1,8 +1,14 @@
+@font-face {
+    font-family: 'principal'; 
+    src: url('../Fonts/Inter/Inter-Regular.ttf') format('truetype'); 
+}
+
 html, body{
     height:100%;
     margin:0;
     display: flex;
     flex-direction: column;
+    font-family: 'principal', sans-serif;
 }
 
 .navbar.visible {
@@ -15,12 +21,12 @@ html, body{
 
 .navbar-placeholder {
     position: absolute;
-    top: 0px; 
-    left: 0px; 
-    width: 42px; 
-    height: 100vh; 
-    background-color: #ffffff; 
-    z-index: 999; 
+    top: 0px; /* Ajusta la posición vertical del rectángulo */
+    left: 0px; /* Ajusta la posición horizontal del rectángulo */
+    width: 42px; /* Ancho del rectángulo */
+    height: 100vh; /* Alto del rectángulo */
+    background-color: #fff; /* Color del rectángulo */
+    z-index: 999; /* Asegura que el rectángulo esté en la parte superior */
 }
 
 
@@ -51,8 +57,9 @@ html, body{
 
 .navbar-placeholder .btnnavbar2 img,
 .navbar-container .btnnavbar img {
-    width: 32px; 
-    height: auto; 
+    width: 32px; /* Ajusta el tamaño de la imagen según lo necesites */
+    height: auto; /* Para mantener la proporción de la imagen */
+}
 
 .navbar-container .btnlinks {
     top: 85px;
@@ -61,7 +68,7 @@ html, body{
 
 .navbar-container .btnnavbar {
     top: 15px;
-    left: 190px; 
+    left: 190px; /* Puedes ajustar la posición horizontal según sea necesario */
 }
 
 .btnclosing{
@@ -75,7 +82,7 @@ html, body{
 }
 
 .navbar {
-    background-color: #ffffff;
+    background-color: #ffff;
     height: 100vh;
     width: 200px;
     padding: 1rem;
@@ -95,7 +102,7 @@ html, body{
 }
 
 .navbar a {
-    color: white;
+    color: #333;
     text-decoration: none;
 }
 
@@ -112,13 +119,14 @@ html, body{
 .reports-link{
     position: relative;
     top: 60px;
-    left: -50px;
+    left: -63px;
 }
 
 .products-link{
     position: relative;
     top: 20px;
     left: 13px;
+    
 }
 
 .navbar-container .line,
@@ -126,7 +134,7 @@ html, body{
     width: 100%; 
     height: 2px; 
     left: 0;
-    background-color: red;
+    background-color: #dcdbdd;
     position: absolute; /* Asegúrate de que se posicione correctamente dentro del navbar */
     top: 550%;
    }
