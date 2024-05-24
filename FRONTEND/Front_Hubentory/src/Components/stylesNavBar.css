@@ -51,14 +51,14 @@ html, body{
 }
 
 .btnclosing img{
-    width: 200px; 
+    width: 130px; 
     height: auto; 
 }
 
 .navbar-placeholder .btnnavbar2 img,
 .navbar-container .btnnavbar img {
-    width: 32px; /* Ajusta el tamaño de la imagen según lo necesites */
-    height: auto; /* Para mantener la proporción de la imagen */
+    width: 32px; 
+    height: auto; 
 }
 
 .navbar-container .btnlinks {
@@ -73,7 +73,7 @@ html, body{
 
 .btnclosing{
     top: 90%;
-    left: 5px;
+    left: 15px;
 }
 
 .navbar-placeholder .btnnavbar2 {
