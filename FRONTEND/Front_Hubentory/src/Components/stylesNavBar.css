@@ -15,12 +15,12 @@ html, body{
 
 .navbar-placeholder {
     position: absolute;
-    top: 0px; /* Ajusta la posición vertical del rectángulo */
-    left: 0px; /* Ajusta la posición horizontal del rectángulo */
-    width: 42px; /* Ancho del rectángulo */
-    height: 100vh; /* Alto del rectángulo */
-    background-color: #333; /* Color del rectángulo */
-    z-index: 999; /* Asegura que el rectángulo esté en la parte superior */
+    top: 0px; 
+    left: 0px; 
+    width: 42px; 
+    height: 100vh; 
+    background-color: #ffffff; 
+    z-index: 999; 
 }
 
 
@@ -30,7 +30,8 @@ html, body{
 
 .navbar-container .btnlinks,
 .navbar-placeholder .btnnavbar2,
-.navbar-container .btnnavbar {
+.navbar-container .btnnavbar,
+.btnclosing {
     background: none;
     border: none;
     cursor: pointer;
@@ -39,23 +40,33 @@ html, body{
 }
 
 .navbar-container .btnlinks img{
-    width: 200px; /* Ajusta el tamaño de la imagen según lo necesites */
-    height: auto; /* Para mantener la proporción de la imagen */
+    width: 230px; 
+    height: auto; 
 }
+
+.btnclosing img{
+    width: 200px; 
+    height: auto; 
+}
+
 .navbar-placeholder .btnnavbar2 img,
 .navbar-container .btnnavbar img {
-    width: 32px; /* Ajusta el tamaño de la imagen según lo necesites */
-    height: auto; /* Para mantener la proporción de la imagen */
-}
+    width: 32px; 
+    height: auto; 
 
 .navbar-container .btnlinks {
     top: 85px;
-    left: 10px;
+    left: 0px;
 }
 
 .navbar-container .btnnavbar {
     top: 15px;
-    left: 190px; /* Puedes ajustar la posición horizontal según sea necesario */
+    left: 190px; 
+}
+
+.btnclosing{
+    top: 90%;
+    left: 5px;
 }
 
 .navbar-placeholder .btnnavbar2 {
@@ -64,7 +75,7 @@ html, body{
 }
 
 .navbar {
-    background-color: #333;
+    background-color: #ffffff;
     height: 100vh;
     width: 200px;
     padding: 1rem;
@@ -100,6 +111,29 @@ html, body{
 
 .reports-link{
     position: relative;
-    top: 40px;
-    left: -65px;
+    top: 60px;
+    left: -50px;
+}
+
+.products-link{
+    position: relative;
+    top: 20px;
+    left: 13px;
+}
+
+.navbar-container .line,
+.navbar-container .line2 {
+    width: 100%; 
+    height: 2px; 
+    left: 0;
+    background-color: red;
+    position: absolute; /* Asegúrate de que se posicione correctamente dentro del navbar */
+    top: 550%;
+   }
+
+.line{
+    position: absolute; /* Asegúrate de que se posicione correctamente dentro del navbar */
+    top: 100%;
+    /* bottom: 1; Coloca la línea en la parte inferior del navbar */
+     /* Asegura que la línea comience desde el borde izquierdo */
 }
