@@ -22,5 +22,10 @@
 }
 
 .content h1 {
+  flex: 1; /* Hace que el contenido ocupe el espacio restante */
+  margin-left: 42px; /* Margen izquierdo igual al ancho del navbar-placeholder */
+  /* los dejare aqui por si tengo algun problema futuro */
+  /* transition: margin-left 0.3s; */
+  /*display: flex; /* Usa Flexbox */
   font-family: 'InterLight', sans-serif;
 }
