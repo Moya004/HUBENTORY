@@ -21,6 +21,8 @@ const DataTable: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage] = useState<number>(15);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +68,14 @@ const DataTable: React.FC = () => {
         (filter === '' || item.id_cate === filter || item.lote === filter)
       )
     : [];
+
+    
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  
+    // Calcular el total de páginas
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
     <div className="data-table-container">
@@ -113,33 +123,39 @@ const DataTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((item: Item) => (
-                <tr key={item.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={selectedItems.includes(item.id)}
-                      onChange={() => handleCheckboxChange(item.id)}
-                    />
-                  </td>
-                  <td>{item.id_prod}</td>
-                  <td>{item.id_inv}</td>
-                  <td>{item.id_cate}</td>
-                  <td>{item.lote}</td>
-                  <td>{item.name}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.caduco}</td>
+              {currentItems.length > 0 ? (
+                currentItems.map((item: Item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.includes(item.id)}
+                        onChange={() => handleCheckboxChange(item.id)}
+                      />
+                    </td>
+                    <td>{item.id_prod}</td>
+                    <td>{item.id_inv}</td>
+                    <td>{item.id_cate}</td>
+                    <td>{item.lote}</td>
+                    <td>{item.name}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.caduco}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={8}>No se encontraron datos</td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={8}>No se encontraron datos</td>
-              </tr>
-            )}
-          </tbody>
+              )}
+            </tbody>
         </table>
       )}
+      <div className='container-btnpage'>
+      <span>{currentPage} / {totalPages}</span>
+        <button className='btnprevius' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}></button>
+        <button className='btnext' onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}></button>
+      </div>
+
     </div>
   );
 };
