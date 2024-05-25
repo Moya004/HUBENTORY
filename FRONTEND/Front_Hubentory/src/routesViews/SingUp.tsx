@@ -1,6 +1,7 @@
 import './singUp.css'; 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import img_logo from '../assets/img_logo.png';
 const singUp:React.FC = () =>{
     const navigate = useNavigate();
 
@@ -9,9 +10,10 @@ const singUp:React.FC = () =>{
     };
 
     return(
-        <div>
+        <div className='background-rectangle'>
             <form className="singup-form">
-                <h1>Sing Up</h1>
+                <img src={img_logo} />
+                <h2>Sing Up</h2>
                 <label htmlFor="id">Id:</label>
                 <input type="text" id="id" />
 

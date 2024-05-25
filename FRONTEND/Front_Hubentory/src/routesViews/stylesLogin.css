@@ -24,8 +24,7 @@
   background-color: #f0f0f0;
   border-radius: 10px;
 }
-
-  
+ 
   .login-form h1 {
     margin-bottom: 20px;
     position: relative;
@@ -49,7 +48,7 @@
   .login-form button {
     width: 95%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #54bcc0;
     color: white;
     border: none;
     border-radius: 5px;
@@ -57,19 +56,22 @@
   }
   
   .login-form button:hover {
-    background-color: #0056b3;
+    background-color: #348486;
   }
   
   .login-form button.singup{
+    position: relative;
+    top: 10px;
     background-color: transparent; 
     border: none; 
-    color: #000000;
+    color: #252626;
+    font-weight: bold;
     text-decoration: underline; 
     padding: 0; 
   }
 
   .login-form button.singup:hover{
-    color: #0056b3;
+    color: #348486;
   }
 
   .login-form img{
