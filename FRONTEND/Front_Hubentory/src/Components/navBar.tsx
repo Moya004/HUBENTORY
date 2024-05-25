@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ocultarNavBarImg from '../assets/hideNavbarImage.png';
 import mostrarNavBarImg from '../assets/showNavbarImage.png';
@@ -12,6 +13,8 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ children }) => {
+    const navigate = useNavigate();
+
     const [linksVisible, setLinksVisible] = useState(true);
     const [navbarVisible, setNavbarVisible] = useState(true);
 
@@ -21,6 +24,10 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
 
     const toggleNavbarVisibility = () => {
         setNavbarVisible(!navbarVisible);
+    };
+
+    const handleCustomPathClick = () => {
+        navigate('/login'); // Navegar a una ruta específica aqui no se si le añades algo
     };
 
     return (
@@ -35,7 +42,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
                     </button>
                     
                     <button className='btnclosing'>
-                        <img src={closing} alt="Cerrar sesión" />
+                        <img src={closing} onClick={handleCustomPathClick} alt="Cerrar sesión" />
                     </button>
                     <nav>
                         <ul className="links-list" style={{ display: linksVisible ? 'block' : 'none', padding: 0, margin: 0 }}>
