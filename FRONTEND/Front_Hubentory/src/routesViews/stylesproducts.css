@@ -29,3 +29,9 @@
   /*display: flex; /* Usa Flexbox */
   font-family: 'InterLight', sans-serif;
 }
+
+.content p{
+  flex: 1; /* Hace que el contenido ocupe el espacio restante */
+  margin-left: 42px;
+  color: #949297;
+}
