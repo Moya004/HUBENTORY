@@ -1,6 +1,13 @@
 import './singUp.css'; 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 const singUp:React.FC = () =>{
+    const navigate = useNavigate();
+
+    const handleCustomPathClick = () => {
+        navigate('/login'); 
+    };
+
     return(
         <div>
             <form className="singup-form">
@@ -24,6 +31,8 @@ const singUp:React.FC = () =>{
                 <input type="text" id="name" />
 
                 <button type="submit">Registrarte</button>
+
+                <button type="submit" className='login' onClick={handleCustomPathClick}>inicia sesion</button>
 
             </form>
         </div>
