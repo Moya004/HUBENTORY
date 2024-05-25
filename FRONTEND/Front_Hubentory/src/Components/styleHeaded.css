@@ -1,0 +1,20 @@
+.btnnavbar,
+.btnnavbar2 {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    cursor: pointer; /* Cursor apuntador */
+    font-size: 1rem; /* Tamaño del texto */
+    border-radius: 4px; /* Borde redondeado */
+    margin-right: 1rem; /* Margen derecho */
+}
+
+.btnnavbar:hover,
+.btnnavbar2:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
+
+.btnnavbar2 {
+    background-color: #6c757d; /* Color de fondo del segundo botón */
+}
