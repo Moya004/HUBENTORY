@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from sqlalchemy import String, Integer, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from db.Session import Base
-from models.gestion_de_inventario import Inventario
+from models.modelos import Inventario
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -56,4 +56,3 @@ class Persona(Base):
     def EMAIL(self) -> str:
         return self.__EMAIL
     
-   

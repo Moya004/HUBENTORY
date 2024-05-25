@@ -1,37 +1,25 @@
-from security import seguridad
-from modelos_seguridad import Persona, UserInBD, TokenData
+from security import verificacion_credenciales
+from .modelos_seguridad import Persona
+from db.Schemas.seguridad import TokenData
 from fastapi import Depends, HTTPException, status
 from jose import jwt, JWTError
-
-db = dict(
-        Moya004= dict(
-        username='Moya004',
-        iD='1043639890',
-        fullname='Mario Andres Martinez Moya',
-        hashed_password='$2b$12$dHagR6wVUZA1sk/PuRSc0u3BPae6ILjouay0tf4z1zp4DZ1.y8SFe',
-        disable=False
-    ),
-)
-
+from sqlalchemy.orm import Session
+from db.Session import get_db
 
 
 #te da al usuario si se encuentra en la base de datos
-def get_user(DB, username: str) -> UserInBD | None:
-    if username in DB:
-        user_dict = DB[username]
-        return UserInBD(**user_dict)
+def get_Persona(DB: Session, personaID: str) -> Persona | None:
+    return DB.query(Persona).filter(Persona.ID_PERSONA == personaID).first()
 
 #autenticacion de usuario y contrasena
-def authenticate_user(DB, username: str, password: str) -> UserInBD:
-    user = get_user(DB, username)
-    if not user:
-        return None
-    if not seguridad.verify_password(password, user.hashed_password):
+def authenticate_Persona(DB, personaID: str, password: str) -> Persona | None:
+    user = get_Persona(DB, personaID)
+    if not user or not verificacion_credenciales.verify_password(password, user._Persona__password):
         return None
     return user
 
 
-async def get_current_user(token:str = Depends(seguridad.oauth2_scheme)):
+async def get_current_Persona(db: Session = Depends(get_db), token:str = Depends(verificacion_credenciales.oauth2_scheme)) -> Persona:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credantials",
@@ -39,20 +27,15 @@ async def get_current_user(token:str = Depends(seguridad.oauth2_scheme)):
     )
 
     try:
-        payload = jwt.decode(token, seguridad.SECRET_KEY, algorithms=[seguridad.ALGORITHM])
-        username = payload.get('sub')
-        if username is None:
+        payload = jwt.decode(token, verificacion_credenciales.SECRET_KEY, algorithms=[verificacion_credenciales.ALGORITHM])
+        personaID = payload.get('sub')
+        if personaID is None:
             raise credentials_exception
-        token_data = TokenData(username=username)
+        token_data = TokenData(ID_persona=personaID)
     except JWTError:
         raise credentials_exception
     
-    user = get_user(db, username=token_data.username)
+    user = get_Persona(db, token_data.ID_persona)
     if user is None:
         raise credentials_exception
     return user
-
-async def get_current_active_user(curr_user: Persona = Depends(get_current_user)):
-    if curr_user.isDisable:
-        raise HTTPException(status_code=400, detail='Inactive user')
-    return curr_user
