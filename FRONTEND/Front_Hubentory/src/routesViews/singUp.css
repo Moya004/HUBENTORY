@@ -37,3 +37,12 @@
   .singup-form button:hover {
     background-color: #0056b3;
   }
+
+    
+  .singup-form button.login{
+    background-color: transparent; 
+    border: none; 
+    color: #000000;
+    text-decoration: underline; 
+    padding: 0; 
+  }
