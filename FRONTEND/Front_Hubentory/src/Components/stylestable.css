@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'principal'; 
+    src: url('../Fonts/Inter/Inter-Regular.ttf') format('truetype'); 
+}
+
 .data-table-container{
     flex: 1; /* Hace que el contenido ocupe el espacio restante */
     margin-left: 42px; /* Margen izquierdo igual al ancho del navbar-placeholder */
@@ -8,6 +13,7 @@
 .data-table-container input[type="text"] {
     margin-bottom: 1rem;
     padding: 0.5rem;
+    font-family: 'principal', sans-serif;
 }
 
 .data-table-container img{
@@ -50,5 +56,50 @@
     left: 250px;
     width: 200px;
     height: 40px;
+    font-family: 'principal', sans-serif;
 
+}
+
+.container-btnpage{
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Opcional: Para centrar verticalmente */
+}
+
+
+.container-btnpage button{
+    position: relative;
+    left: 87%;
+    margin-right: 10px; 
+}
+
+.btnprevius,
+.btnext {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: background-image 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.btnext{
+    background-image: url('../assets/next.png');
+}
+
+.btnext:disabled {
+    background-image: url('../assets/next_disanbled.png');
+}
+
+.btnprevius{
+    background-image: url('../assets/previus.png');
+}
+
+.btnprevius:disabled {
+    background-image: url('../assets/previus_disanbled.png');
 }
