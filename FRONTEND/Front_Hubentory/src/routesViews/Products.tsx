@@ -10,23 +10,6 @@ import {useState} from 'react';
 import './stylesproducts.css';
 import '../Components/styleHeaded.css';
 
-
-// export default function Products() {
-//     return (
-//         <div className="container">
-//             <NavBar>
-//                 <img className="logo-hub" src={logo}></img>
-//             </NavBar>
-//             <div>
-//                 <div className="content">
-//                     <h1>Productos</h1>
-//                 </div>
-//                 <DataTable />
-//             </div>
-//         </div>
-//     );
-// }
-
 export default function Products() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
