@@ -1,10 +1,12 @@
 import NavBar from "../Components/navBar";
 import DataTable from '../Components/tableProducts';
+import Modal from '../Components/modal';
 import logo from '../assets/logo.png';
 import img_left from '../assets/left.png';
 import img_right from '../assets/right.png';
 import btn_alerts from '../assets/alerts.png';
 import { useNavigate } from 'react-router-dom';
+import {useState} from 'react';
 import './stylesproducts.css';
 import '../Components/styleHeaded.css';
 
@@ -27,6 +29,7 @@ import '../Components/styleHeaded.css';
 
 export default function Products() {
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handlePreviousClick = () => {
         navigate(-1); // Navegar a la vista anterior
@@ -34,6 +37,10 @@ export default function Products() {
 
     const handleNextClick = () => {
         navigate(1); // Navegar a la vista siguiente
+    };
+
+    const handleModalToggle = () => {
+        setIsModalOpen(!isModalOpen);
     };
 
     return (
@@ -51,7 +58,7 @@ export default function Products() {
                             <img src={img_right} alt="Next" />
                         </button>
                         <button className='btn-alerts'>
-                            <img src={btn_alerts} alt="Alerts" />
+                            <img src={btn_alerts}  onClick={handleModalToggle} alt="Alerts"  />
                         </button>
                     </div>
                     <h1>Productos</h1>
@@ -59,6 +66,10 @@ export default function Products() {
                 </div>
                 <DataTable />
             </div>
+            <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
+                <h2>Notificaciones</h2>
+                <p>Este es el contenido de la ventana emergente.</p>
+            </Modal>
         </div>
     );
 }
