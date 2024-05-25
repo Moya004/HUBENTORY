@@ -12,7 +12,8 @@
 
 .data-table {
     border-collapse: collapse;
-    width: 100%;
+    width: 76vw;
+    height: auto;
 }
 
 .data-table th, .data-table td {
