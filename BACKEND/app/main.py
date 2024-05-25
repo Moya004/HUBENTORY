@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from api.routers import users
+# from api.routers import users
 
 hubentory = FastAPI()
 
-hubentory.include_router(users.router)
+#hubentory.include_router(users.router)
 
 @hubentory.get('/')
 def root():

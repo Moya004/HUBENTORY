@@ -10,8 +10,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 @dataclass
 class Persona(Base):
     __tablename__ = 'personas'
-    __slots__ = ['__ID_PERSONA', '__NOMBRE_COMPLETO', '__INVENTARIO', '__INVENTARIO_ID', '__JERARQUIA', '__EMAIL', '__password']
-
+    
     __ID_PERSONA: Mapped[str] = mapped_column('ID_PERSONA', String, primary_key= True)
     __NOMBRE_COMPLETO: Mapped[str] = mapped_column('NOMBRE_COMPLETO', String, nullable=False)
     __INVENTARIO: Mapped[Inventario] = relationship('Inventario')
