@@ -1,6 +1,7 @@
 import NavBar from "../Components/navBar";
 import DataTable from '../Components/tableProducts';
 import Modal from '../Components/add';
+import Removal from '../Components/removal';
 import logo from '../assets/logo.png';
 import img_left from '../assets/left.png';
 import img_right from '../assets/right.png';
@@ -13,6 +14,7 @@ import '../Components/styleHeaded.css';
 export default function Products() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRemovalOpen, setIsRemovalOpen] = useState(false);
 
     const handlePreviousClick = () => {
         navigate(-1); // Navegar a la vista anterior
@@ -24,6 +26,10 @@ export default function Products() {
 
     const handleModalToggle = () => {
         setIsModalOpen(!isModalOpen);
+    };
+
+    const handleRemovalToggle = () => {
+        setIsRemovalOpen(!isRemovalOpen);
     };
 
     const handleCustomPathClick = () => {
@@ -54,7 +60,7 @@ export default function Products() {
                        
                     </div>
                     <div className="headed_aux2">
-                        <button className='btn_eliminar' >Retirar</button>
+                        <button className='btn_eliminar' onClick={handleRemovalToggle}>Retirar</button>
                         <p>Todos los productos registrados actualmente en el inventario</p>
                     </div>
 
@@ -64,6 +70,10 @@ export default function Products() {
             <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
                 <h2>Selecciona</h2>
             </Modal>
+
+            <Removal isOpen={isRemovalOpen} onClose={handleRemovalToggle}>
+                <h2>Retirar productos</h2>
+            </Removal>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import NavBar from "../Components/navBar";
 import ReportsTable from '../Components/tableReports';
+import Modal from '../Components/add';
 import logo from '../assets/logo.png';
 import img_left from '../assets/left.png';
 import img_right from '../assets/right.png';
@@ -15,11 +16,11 @@ export default function Products() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handlePreviousClick = () => {
-        navigate(-1); // Navegar a la vista anterior
+        navigate(-1); 
     };
 
     const handleNextClick = () => {
-        navigate(1); // Navegar a la vista siguiente
+        navigate(1); 
     };
 
     const handleModalToggle = () => {
@@ -36,8 +37,8 @@ export default function Products() {
                 <img className="logo-hub" src={logo} alt="Logo" />
             </NavBar>
             <div>
-                <div className="content">
-                    <div className="header">
+                <div className="Reports-content">
+                    <div className="Reports-header">
                         <button className='btn-previous' onClick={handlePreviousClick}>
                             <img src={img_left} alt="Previous" />
                         </button>
@@ -48,13 +49,17 @@ export default function Products() {
                             <img src={btn_alerts}   alt="Alerts"  />
                         </button>
                     </div>
-                    <div className="headed_aux">
+                    <div className="headedR_aux">
                         <h1>Informes</h1>
                         <button className='btn_add' onClick={handleModalToggle}>Agregar</button>
                     </div>
+                    <p>Historial de informes generados en el inventario</p>
                 </div>
                 <ReportsTable />
             </div>
+            <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
+                <h2>Selecciona</h2>
+            </Modal>
         </div>
     );
 }
