@@ -1,6 +1,6 @@
 import NavBar from "../Components/navBar";
 import DataTable from '../Components/tableProducts';
-import Modal from '../Components/modal';
+import Modal from '../Components/add';
 import logo from '../assets/logo.png';
 import img_left from '../assets/left.png';
 import img_right from '../assets/right.png';
@@ -58,7 +58,6 @@ export default function Products() {
             </div>
             <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
                 <h2>Selecciona</h2>
-                <p>Este es el contenido de la ventana emergente.</p>
             </Modal>
         </div>
     );
