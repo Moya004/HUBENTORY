@@ -21,7 +21,7 @@ const AddProduct: React.FC<AddProductProps> = ({ isOpen, onClose, children }) =>
     return (
         <div className="modal-overlay">
             <div className="modal-wrapper">
-                <button className="modal-close" onClick={onClose}>
+                <button className="product-close" onClick={onClose}>
                     <img src={close} alt="Close" />
                 </button>
                 {children}
@@ -43,8 +43,8 @@ inventario</p>
                     <input className="Date" type="text" id="Date" placeholder="00/00/0000" />
                 </form>
                 <div className='buttons-wrapper'>
-                    <button className='btnCancel' onClick={onClose}>Cancelar</button>
-                    <button className='btnadd'>Generar</button>
+                    <button className='btnCancel_p' onClick={onClose}>Cancelar</button>
+                    <button className='btnadd_p'>Generar</button>
                 </div>
             </div>
         </div>
