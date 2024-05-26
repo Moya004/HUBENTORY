@@ -1,5 +1,4 @@
 import NavBar from "../Components/navBar";
-import DataTable from '../Components/tableProducts';
 import Modal from '../Components/add';
 import logo from '../assets/logo.png';
 import img_left from '../assets/left.png';
