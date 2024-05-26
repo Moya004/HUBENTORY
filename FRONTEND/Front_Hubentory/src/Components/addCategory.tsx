@@ -20,7 +20,7 @@ const AddCategory: React.FC<AddCategoryProps> = ({ isOpen, onClose, children }) 
                 {children}
                 <form className="category-form">
                     <input className="id_cat" type="text" id="id_category" placeholder="   ID Categoria"/>
-                </form>
+</form>
                 <div className='container-btnadd'>
                     <button className='btnCancel' onClick={onClose}>Cancelar</button>
                     <button className='btnadd'>Generar</button>
