@@ -29,9 +29,6 @@ const singUp:React.FC = () =>{
                 <label htmlFor="id_inv">Id de inventario:</label>
                 <input type="text" id="id" />
 
-                <label htmlFor="name_inv">Nombre de inventario:</label>
-                <input type="text" id="name" />
-
                 <button type="submit">Registrarte</button>
 
                 <button type="submit" className='login' onClick={handleCustomPathClick}>inicia sesion</button>
