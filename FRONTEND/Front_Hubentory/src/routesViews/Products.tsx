@@ -51,8 +51,13 @@ export default function Products() {
                     <div className="headed_aux">
                         <h1>Productos</h1>
                         <button className='btn_add' onClick={handleModalToggle}>Agregar</button>
+                       
                     </div>
-                    <p>Todos los productos registrados actualmente en el inventario</p>
+                    <div className="headed_aux2">
+                        <button className='btn_eliminar' >Retirar</button>
+                        <p>Todos los productos registrados actualmente en el inventario</p>
+                    </div>
+
                 </div>
                 <DataTable />
             </div>
