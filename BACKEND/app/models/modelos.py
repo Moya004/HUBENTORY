@@ -11,11 +11,11 @@ class Inventario(Base):
     __tablename__ = 'inventarios'
 
     __ID_INVENTARIO: Mapped[str] = mapped_column('ID_INVENTARIO', String, primary_key= True)
-    __NOMBRE: Mapped[str] = mapped_column('NOMBRE', String)
+    __nombre: Mapped[str] = mapped_column('NOMBRE', String)
 
     def __init__(self, id_inv: str, name: str) -> None:
         self.__ID_INVENTARIO = id_inv
-        self.__NOMBRE = name
+        self.__nombre = name
 
 
     @property
@@ -24,12 +24,12 @@ class Inventario(Base):
     
     @property
     def NOMBRE(self) -> str:
-        return self.__NOMBRE
+        return self.__nombre
     
 
     @NOMBRE.setter
     def NOMBRE(self, new_name: str) -> None:
-        self.__NOMBRE = new_name
+        self.__nombre = new_name
 
     def __hash__(self) -> int: ...
 
@@ -90,10 +90,10 @@ class Producto(Base):
     __table_args__ = (PrimaryKeyConstraint('ID', 'LOTE'),)
 
     def __init__(self, ID: str, NOMBRE: str, CADUCO: date, cat: Categoria, LOTE: str):
-        self.__ID_PRODUCTO = ID# object.__setattr__(self, 'ID_PRODUCTO', ID)
-        self.__NOMBRE = NOMBRE# object.__setattr__(self, 'NOMBRE', NOMBRE)
-        self.__CADUCO = CADUCO# object.__setattr__(self, 'CADUCO', CADUCO)
-        self.__LOTE = LOTE# object.__setattr__(self, 'LOTE', LOTE)
+        self.__ID_PRODUCTO = ID
+        self.__NOMBRE = NOMBRE
+        self.__CADUCO = CADUCO
+        self.__LOTE = LOTE
         self.__existencias = 0
         self.__categoria = cat
         self.__categoria_id = cat.ID_CATEGORIA

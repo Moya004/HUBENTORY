@@ -1,11 +1,11 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from models.modelos import Categoria, Inventario
-from ..Schemas.modelos import CategoriaCreate
+from ..Schemas.modelos import CategoriaCreate, CategoriaUpdateNombre
 import uuid
 
-def get_categoria(db: Session, categoria_id: str) -> Categoria | None:
-    return db.execute(select(Categoria).where(Categoria._Categoria__ID_CATEGOARIA == categoria_id))
+def get_categoria(db: Session, categoria_nombre: str) -> Categoria | None:
+    return db.execute(select(Categoria).where(Categoria._Categoria__nombre == categoria_nombre))
 
 def create_categoria(db: Session, categoria: CategoriaCreate, inv: Inventario) -> Categoria:
     db_categoria = Categoria(
@@ -18,5 +18,11 @@ def create_categoria(db: Session, categoria: CategoriaCreate, inv: Inventario) -
     db.refresh(db_categoria)
     return db_categoria
 
-def get_categorias(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(Categoria).offset(skip).limit(limit).all()
+def update_nombre(db: Session, Cate:Categoria, categoria_update: CategoriaUpdateNombre) -> Categoria | None:
+    Cate.nombre = categoria_update.Nombre
+    db.commit()
+    db.refresh(Cate)
+    return Cate
+
+def get_categorias(db: Session, inve: Inventario):
+    return db.execute(select(Categoria).where(Categoria._Categoria__INVENTARIO_ID == inve._Inventario__ID_INVENTARIO)).scalars().all()

@@ -23,6 +23,9 @@ class CategoriaBase(BaseModel):
     Nombre: str
     ID_inventario: str
 
+class CategoriaUpdateNombre(CategoriaBase):
+    pass
+
 class CategoriaCreate(CategoriaBase):
     pass
 

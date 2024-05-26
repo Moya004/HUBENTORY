@@ -21,7 +21,8 @@ class PersonaResponse(PersonaBase):
         from_attributes = True
 
 class PersonaUpdatePassword(BaseModel):
-    Contraseña: str
+    old_Contraseña: str
+    new_Contrase: str
 
 class Token(BaseModel):
     access_token: str

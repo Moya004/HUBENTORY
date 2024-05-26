@@ -1,4 +1,3 @@
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 from security.modelos_seguridad import Persona
 from ..Schemas.modelos import InventarioCreate, CategoriaCreate
@@ -45,12 +44,11 @@ def delete_persona(db: Session, persona_id: str) -> Persona | None:
         db.commit()
     return db_persona
 
-def update_password(db: Session, persona_id: str, new_password: str) -> Persona | None:
-    db_persona = get_persona(db, persona_id)
-    if db_persona:
-        db_persona._Persona__password = get_password_hash(new_password)
-        db.commit()
-        db.refresh(db_persona)
+def update_password(db: Session, db_persona: Persona, new_password: str) -> Persona | None:
+
+    db_persona._Persona__password = get_password_hash(new_password)
+    db.commit()
+    db.refresh(db_persona)
     return db_persona
 
 def get_personas(db: Session, skip: int = 0, limit: int = 10):
