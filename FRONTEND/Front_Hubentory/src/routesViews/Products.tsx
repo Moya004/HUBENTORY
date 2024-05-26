@@ -26,6 +26,10 @@ export default function Products() {
         setIsModalOpen(!isModalOpen);
     };
 
+    const handleCustomPathClick = () => {
+        navigate('/notification'); 
+    };
+
     return (
         <div className="container">
             <NavBar>
@@ -40,17 +44,20 @@ export default function Products() {
                         <button className='btn-next' onClick={handleNextClick}>
                             <img src={img_right} alt="Next" />
                         </button>
-                        <button className='btn-alerts'>
-                            <img src={btn_alerts}  onClick={handleModalToggle} alt="Alerts"  />
+                        <button className='btn-alerts' onClick={handleCustomPathClick}>
+                            <img src={btn_alerts}   alt="Alerts"  />
                         </button>
                     </div>
-                    <h1>Productos</h1>
+                    <div className="headed_aux">
+                        <h1>Productos</h1>
+                        <button className='btn_add' onClick={handleModalToggle}>Agregar</button>
+                    </div>
                     <p>Todos los productos registrados actualmente en el inventario</p>
                 </div>
                 <DataTable />
             </div>
             <Modal isOpen={isModalOpen} onClose={handleModalToggle}>
-                <h2>Notificaciones</h2>
+                <h2>Selecciona</h2>
                 <p>Este es el contenido de la ventana emergente.</p>
             </Modal>
         </div>
