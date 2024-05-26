@@ -16,11 +16,11 @@ const Login:React.FC = () => {
             <div className='background-rectangle'></div>
             <form className="login-form">
                 <img src={img_logo} />
-                <h1>Login</h1>
-                <label htmlFor="id">id</label>
+                <h1>Iniciar Sesion</h1>
+                <label htmlFor="id">Id</label>
                 <input type="text" id="id" />
 
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Contraseña</label>
                 <input type="password" id="password" />
 
                 <button type="submit">Iniciar sesion</button>
