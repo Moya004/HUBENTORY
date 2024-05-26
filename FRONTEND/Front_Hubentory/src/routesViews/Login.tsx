@@ -31,5 +31,4 @@ const Login:React.FC = () => {
     );    
 }
 
-// revisa no entinedo porque me genera errores honestamente
 export default Login;
