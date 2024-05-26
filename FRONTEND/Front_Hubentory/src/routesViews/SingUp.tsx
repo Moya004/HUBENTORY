@@ -1,4 +1,4 @@
-import './singUp.css'; 
+import './stylesSingUp.css'; 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import img_logo from '../assets/img_logo.png';
