@@ -5,49 +5,57 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-wrapper {
-    background-color: #fff;
+    background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: 80vh; /* Altura máxima del modal */
-    overflow-y: auto; /* Permitir desplazamiento vertical si el contenido supera la altura máxima */
+    position: relative;
+    max-width: 450px;
+    max-height: 520px;
 }
 
-.modal-close {
-    background: none;
-    border: none;
+.product-close {
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
     cursor: pointer;
+}
+
+.product-close img{
+    width: 35px;
+    height: auto;
 }
 
 .form-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre los inputs */
+    gap: 10px;
     width: 100%;
 }
 
-.form-wrapper input {
+.form-wrapper input,
+.form-wrapper select {
     width: 100%;
-    padding: 10px; /* Ajusta este valor para separar el placeholder del borde */
+    padding: 10px; 
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
     font-size: 16px; /* Tamaño de la fuente */
+    background-color: #f4f3f4;
+}
+
+.form-wrapper select{
+    color: #aaa;
 }
 
 .form-wrapper input::placeholder {
@@ -63,25 +71,44 @@
 
 .buttons-wrapper {
     display: flex;
-    justify-content: space-between; /* Espacio entre los botones */
+    /* justify-content: space-between;  */
     width: 100%;
     margin-top: 20px;
 }
 
-.btnCancel, .btnadd {
-    /* padding: 10px 20px; */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.buttons-wrapper .btnCancel_p,
+.buttons-wrapper .btnadd_p{
+    position: relative;
+    left: 65%;
+    top: 7px;
+    margin: 2px;
 }
 
-.btnCancel {
-    background-color: #f44336;
-    color: white;
+.btnCancel_p{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
 }
 
-.btnadd {
-    background-color: #4CAF50;
-    color: white;
+.btnCancel_p:hover{
+    background-color: #df7979;
+    color: #fff;
+}
+
+.btnadd_p{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: #477c9a;
+    color: #fff;
+}
+
+.btnadd_p:hover{
+    background-color: #305469;
+    color: #fff;
 }
