@@ -1,0 +1,36 @@
+.container-btnadd .btnCancel,
+.container-btnadd .btnadd{
+    position: relative;
+    left: 50%;
+    top: 7px;
+    margin: 10px;
+}
+
+.btnCancel{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+}
+
+.btnCancel:hover{
+    background-color: #df7979;
+    color: #fff;
+}
+
+.btnadd{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: #477c9a;
+    color: #fff;
+}
+
+.btnadd:hover{
+    background-color: #305469;
+    color: #fff;
+}
