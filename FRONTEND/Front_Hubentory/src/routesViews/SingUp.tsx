@@ -6,7 +6,7 @@ const singUp:React.FC = () =>{
     const navigate = useNavigate();
 
     const handleCustomPathClick = () => {
-        navigate('/login'); 
+        navigate('/'); 
     };
 
     return(

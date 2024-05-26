@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App.tsx'
-import './index.css'
 import Login from './routesViews/Login.tsx'
 import SingUp from './routesViews/SingUp.tsx'
 import Products from './routesViews/Products.tsx'
@@ -16,7 +14,7 @@ import { createBrowserRouter , RouterProvider } from "react-router-dom";
 // creamos el router - es un arreglo
 const router = createBrowserRouter([
   {
-    path:"/login",
+    path:"/",
     element: <Login/>,
   },
   {
