@@ -6,6 +6,7 @@ import Login from './routesViews/Login.tsx'
 import SingUp from './routesViews/SingUp.tsx'
 import Products from './routesViews/Products.tsx'
 import Reports from './routesViews/Reports.tsx'
+import Notification from './routesViews/notification.tsx'
 import ProtectedRoutes from './routesViews/ProtectedRoutes.tsx'
 import { AuthProvider } from './Auth/AuthProvider.tsx'
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:"/Reports",
         element: <Reports />,
+      },
+      {
+        path:"/Notification",
+        element: <Notification/>,
       }
     ],
   },
