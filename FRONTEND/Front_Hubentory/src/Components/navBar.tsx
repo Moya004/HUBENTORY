@@ -27,7 +27,7 @@ const NavBar: React.FC<NavBarProps> = ({ children }) => {
     };
 
     const handleCustomPathClick = () => {
-        navigate('/login'); // Navegar a una ruta específica aqui no se si le añades algo
+        navigate('/'); // Navegar a una ruta específica aqui no se si le añades algo
     };
 
     return (
