@@ -9,10 +9,10 @@ from config import SECRET_KEY, ALGORITHM
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl= '/users/token')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl= '/token')
 
 #crea el token de acceso
-def create_acces_token(data: dict, expires_delta: timedelta | None = None) -> str:
+def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta

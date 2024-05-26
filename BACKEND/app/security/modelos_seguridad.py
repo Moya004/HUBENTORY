@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from sqlalchemy import String, Integer, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from db.Session import Base
+from db.sesion import Base
 from models.modelos import Inventario
-from passlib.context import CryptContext
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
 
 @dataclass
 class Persona(Base):
@@ -13,27 +13,25 @@ class Persona(Base):
     
     __ID_PERSONA: Mapped[str] = mapped_column('ID_PERSONA', String, primary_key= True)
     __NOMBRE_COMPLETO: Mapped[str] = mapped_column('NOMBRE_COMPLETO', String, nullable=False)
+    __INVENTARIO_ID: Mapped[str] = mapped_column('INVENTARIO_ID', String, ForeignKey('inventarios.ID_INVENTARIO'), nullable= False, repr=False)
     __INVENTARIO: Mapped[Inventario] = relationship('Inventario')
-    __INVENTARIO_ID: Mapped[str] = mapped_column(String, ForeignKey('inventarios.ID_INVENTARIO'), nullable= False, repr=False)
     __JERARQUIA: Mapped[int] = mapped_column('JERARQUIA', Integer)
     __EMAIL: Mapped[str] = mapped_column('EMAIL', String, nullable=False)
     __password: Mapped[str] = mapped_column('password', String, nullable=False)
 
     def __init__(self, idp: str, nom: str, inv: Inventario, jer: int, mail: str, contra: str) -> None:
-        object.__setattr__(self, '__ID_PERSONA', idp)
-        object.__setattr__(self, '__NOMBRE_COMPLETO', nom)
-        object.__setattr__(self, '__INVENTARIO', inv)
-        object.__setattr__(self, '__INVENTARIO_ID', inv.ID_INVENTARIO)
-        object.__setattr__(self, '__JERARQUIA', jer)
-        object.__setattr__(self, '__EMAIL', mail)
+        self.__ID_PERSONA = idp
+        self.__NOMBRE_COMPLETO = nom
+        self.__INVENTARIO = inv
+        self.__INVENTARIO_ID = inv.ID_INVENTARIO
+        self.__JERARQUIA = jer
+        self.__EMAIL = mail
         
-        self.__password = self.hash_password(contra)
+        self.__password = contra
 
-    def verify_password(self, plain_password: str) -> bool:
-        return pwd_context.verify(plain_password, self.__Contraseña)
+    # def verify_password(self, plain_password: str) -> bool:
+    #     return pwd_context.verify(plain_password, self.__Contraseña)
 
-    def hash_password(self, plain_password: str) -> str:
-        return pwd_context.hash(plain_password)
 
     @property
     def ID_PERSONA(self) -> str:

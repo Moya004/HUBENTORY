@@ -4,16 +4,15 @@ from db.Schemas.seguridad import TokenData
 from fastapi import Depends, HTTPException, status
 from jose import jwt, JWTError
 from sqlalchemy.orm import Session
-from db.Session import get_db
+from db.sesion import get_db
+from db.CRUD.persona import get_persona
 
 
-#te da al usuario si se encuentra en la base de datos
-def get_Persona(DB: Session, personaID: str) -> Persona | None:
-    return DB.query(Persona).filter(Persona.ID_PERSONA == personaID).first()
+
 
 #autenticacion de usuario y contrasena
 def authenticate_Persona(DB, personaID: str, password: str) -> Persona | None:
-    user = get_Persona(DB, personaID)
+    user = get_persona(DB, personaID)
     if not user or not verificacion_credenciales.verify_password(password, user._Persona__password):
         return None
     return user
@@ -35,7 +34,7 @@ async def get_current_Persona(db: Session = Depends(get_db), token:str = Depends
     except JWTError:
         raise credentials_exception
     
-    user = get_Persona(db, token_data.ID_persona)
+    user = get_persona(db, token_data.ID_persona)
     if user is None:
         raise credentials_exception
     return user

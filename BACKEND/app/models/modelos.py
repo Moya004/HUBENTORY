@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from sqlalchemy import PrimaryKeyConstraint, String, Integer, Date, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from db.Session import Base
+from db.sesion import Base
 
 
 
@@ -14,8 +14,8 @@ class Inventario(Base):
     __NOMBRE: Mapped[str] = mapped_column('NOMBRE', String)
 
     def __init__(self, id_inv: str, name: str) -> None:
-        object.__setattr__(self, '__ID_INVENTARIO', id_inv)
-        object.__setattr__(self, '__NOMBRE', name)
+        self.__ID_INVENTARIO = id_inv
+        self.__NOMBRE = name
 
 
     @property
@@ -27,23 +27,26 @@ class Inventario(Base):
         return self.__NOMBRE
     
 
+    @NOMBRE.setter
+    def NOMBRE(self, new_name: str) -> None:
+        self.__NOMBRE = new_name
+
     def __hash__(self) -> int: ...
 
 @dataclass
 class Categoria(Base):
     __tablename__ = 'categorias'
     
-    __ID_CATEGORIA: Mapped[str] = mapped_column('ID_CATEGORIA', String)
+    __ID_CATEGORIA: Mapped[str] = mapped_column('ID_CATEGORIA', String, primary_key= True)
     __nombre: Mapped[str] = mapped_column('NOMBRE', String)
     __INVENTARIO_ID: Mapped[str] = mapped_column('INVENTARIO_ID',String, ForeignKey('inventarios.ID_INVENTARIO'), nullable=False, repr=False, init=False)
     __INVENTARIO: Mapped[Inventario] = relationship('Inventario')
 
-    __table_args__ = (PrimaryKeyConstraint('ID_CATEGORIA', 'INVENTARIO_ID'), )
 
     def __init__(self, nom: str, id_cat: str, inve: Inventario) -> None:
-        object.__setattr__(self, '__ID_CATEGORIA', id_cat)
-        object.__setattr__(self, '__INVENTARIO', inve)
-        object.__setattr__(self, '__INVENTARIO_ID', inve.ID_INVENTARIO)
+        self.__ID_CATEGORIA = id_cat
+        self.__INVENTARIO = inve
+        self.__INVENTARIO_ID = inve.ID_INVENTARIO
 
         self.__nombre = nom
 
@@ -79,20 +82,18 @@ class Producto(Base):
     __ID_PRODUCTO: Mapped[str] = mapped_column('ID', String)
     __NOMBRE: Mapped[str] = mapped_column('NOMBRE', String, nullable=False)
     __CADUCO: Mapped[date] = mapped_column('CADUCO', Date)
-    __categoria_id: Mapped[str] = mapped_column('categoria_ID', ForeignKey('categorias.__ID_CATEGORIA'), nullable=False, init=False, repr=False)
-    __INVENTARIO_ID:Mapped[str] = mapped_column('INVENTARIO_ID', ForeignKey('categorias.__INVENTARIO_ID'), nullable=False, init=False, repr=False)
+    __categoria_id: Mapped[str] = mapped_column('categoria_ID', ForeignKey('categorias.ID_CATEGORIA'), nullable=False, init=False, repr=False)
     __categoria: Mapped[Categoria] = relationship("Categoria", init=False)
     __LOTE: Mapped[str] = mapped_column('LOTE', String, nullable=False)
     __existencias: Mapped[int] = mapped_column('existencias', Integer, default=0)
 
-    __table_args__ = (PrimaryKeyConstraint('ID', 'LOTE', 'INVENTARIO_ID'), )
+    __table_args__ = (PrimaryKeyConstraint('ID', 'LOTE'),)
 
     def __init__(self, ID: str, NOMBRE: str, CADUCO: date, cat: Categoria, LOTE: str):
-        object.__setattr__(self, '__ID_PRODUCTO', ID)
-        object.__setattr__(self, '__NOMBRE', NOMBRE)
-        object.__setattr__(self, '__CADUCO', CADUCO)
-        object.__setattr__(self, '__LOTE', LOTE)
-        object.__setattr__(self, '__INVENTARIO_ID', cat.INVENTARIO.ID_INVENTARIO)
+        self.__ID_PRODUCTO = ID# object.__setattr__(self, 'ID_PRODUCTO', ID)
+        self.__NOMBRE = NOMBRE# object.__setattr__(self, 'NOMBRE', NOMBRE)
+        self.__CADUCO = CADUCO# object.__setattr__(self, 'CADUCO', CADUCO)
+        self.__LOTE = LOTE# object.__setattr__(self, 'LOTE', LOTE)
         self.__existencias = 0
         self.__categoria = cat
         self.__categoria_id = cat.ID_CATEGORIA
@@ -135,4 +136,4 @@ class Producto(Base):
         self.__existencias = value
 
     def __hash__(self) -> int:
-        return hash(self.__CADUCO, self.__ID_PRODUCTO, self.__NOMBRE, self.__LOTE, self.__INVENTARIO_ID)
+        return hash(self.__CADUCO, self.__ID_PRODUCTO, self.__NOMBRE, self.__LOTE)
