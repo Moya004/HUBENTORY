@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             </div>
             {isAddProductOpen && (
                 <AddProduct isOpen={isAddProductOpen} onClose={handleAddProductClose}>
-                    <h2>Agregar productos</h2>
+                    <h2>Agregar producto</h2>
                 </AddProduct>
             )}
             {isAddCategoryOpen && (
