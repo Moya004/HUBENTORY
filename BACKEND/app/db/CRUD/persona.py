@@ -44,7 +44,7 @@ def delete_persona(db: Session, persona_id: str) -> Persona | None:
         db.commit()
     return db_persona
 
-def update_password(db: Session, db_persona: Persona, new_password: str) -> Persona | None:
+def update_password(db: Session, db_persona: Persona, new_password: str) -> Persona:
 
     db_persona._Persona__password = get_password_hash(new_password)
     db.commit()
