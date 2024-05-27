@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi import Depends, HTTPException, status
 from db.Schemas.modelos import InventarioUpdateNombre, CategoriaResponse, InventarioResponse, CategoriaCreate
 from security.autenticacion import get_current_Persona
-from db.CRUD import inventario as inventario_crud, categoria as categoria_crud
+from db.CRUD import inventario as inventario_crud, categoria as categoria_crud, producto as producto_crud
 from db.sesion import get_db
 
 router = APIRouter()
@@ -37,5 +37,10 @@ def delete_categoria(nombre_categoria:str, curr_persona = Depends(get_current_Pe
     categoria = categoria_crud.get_categoria(db, nombre_categoria, curr_persona.INVENTARIO)
     if not categoria:
         raise HTTPException(status_code=404, detail="La categoria no existe")
+    no_categoria = categoria_crud.get_categoria_null(db, curr_persona.INVENTARIO)
+    related_products = producto_crud.get_productos_Categoria(db, categoria)
+    if related_products:
+        for producto in related_products:
+            producto_crud.update_categoria_producto(db, producto, no_categoria)
     result = categoria_crud.delete_categoria(db, categoria)
     return CategoriaResponse(Nombre=result.nombre, ID_inventario=result.INVENTARIO.ID_INVENTARIO, ID_categoria=result.ID_CATEGORIA)
