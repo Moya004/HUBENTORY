@@ -34,11 +34,14 @@ def entrada_productos(archivo: UploadFile = File(...), curr_persona = Depends(ge
     to_return = []
     sin_categoria = categoria_crud.get_categoria_null(db, curr_persona.INVENTARIO)
     for valido in validos:
-        in_inventario = producto_crud.get_producto(db, valido[0], valido[1])
+        in_inventario = producto_crud.get_producto(db, valido[0], valido[1], curr_persona.INVENTARIO.ID_INVENTARIO)
         if not in_inventario:
-            date_str = valido[3].split('/')
-            fecha = date(day=int(date_str[0]), month=int(date_str[1]), year=int(date_str[2]))
-            added = producto_crud.create_producto(db, ProductoCreate(NOMBRE=valido[2], ID=valido[0], LOTE=valido[1], CADUCO=fecha, ID_categoria=sin_categoria.ID_CATEGORIA), sin_categoria)
+            if len(valido[3]) != 2:
+                date_str = valido[3].split('/')
+                fecha = date(day=int(date_str[0]), month=int(date_str[1]), year=int(date_str[2]))
+            else:
+                fecha = None
+            added = producto_crud.create_producto(db, ProductoCreate(NOMBRE=valido[2], ID=valido[0], LOTE=valido[1], CADUCO=fecha, ID_categoria=sin_categoria.ID_CATEGORIA, existencias=0), sin_categoria)
             if int(valido[4]) < 0:
                 new_existencias = 0
             else:
@@ -49,9 +52,27 @@ def entrada_productos(archivo: UploadFile = File(...), curr_persona = Depends(ge
             else:
                 new_existencias = int(valido[4]) + in_inventario.existencias
         
-        
-        added = producto_crud.update_existencias(db, in_inventario, new_existencias)
-        to_return.append(ProductoResponse(NOMBRE=added.NOMBRE, CADUCO=added.CADUCO, ID_categoria=added.categoria.ID_CATEGORIA, LOTE=added.LOTE, ID=added.ID, existencias=added.existencias))
+        if in_inventario:
+            result = producto_crud.update_existencias(db, in_inventario, new_existencias)
+        else:
+            result = producto_crud.update_existencias(db, added, new_existencias)
+        to_return.append(ProductoResponse(NOMBRE=result.NOMBRE, CADUCO=result.CADUCO, ID_categoria=result.categoria.ID_CATEGORIA, LOTE=result.LOTE, ID=result.ID, existencias=result.existencias))
     
     return to_return 
 
+@router.put('/RM/retiro', response_model=List[ProductoResponse])
+def terminate_productos(curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
+    expirado = categoria_crud.get_categoria_expired(db, curr_persona.INVENTARIO)
+    productos_inv = producto_crud.get_productos(db, curr_persona.INVENTARIO.ID_INVENTARIO)
+    result = []
+    hoy = date.today()
+    for producto in productos_inv:
+        if producto.CADUCO:
+            if producto.CADUCO <= hoy:
+                result.append(producto_crud.update_categoria_producto(db, producto, expirado))
+        else:
+            continue
+    if not productos_inv:
+        raise HTTPException(status_code=400, detail="el inventario no tiene productos")
+    result = list(map(lambda x: ProductoResponse(NOMBRE=x.NOMBRE, CADUCO=x.CADUCO, ID_categoria=x.categoria.ID_CATEGORIA, LOTE=x.LOTE, ID=x.ID, existencias=x.existencias), result))
+    return productos_inv

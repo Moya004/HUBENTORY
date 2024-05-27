@@ -1,11 +1,11 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from models.modelos import Producto, Categoria
+from models.modelos import Producto, Categoria, Inventario
 from ..Schemas.modelos import ProductoCreate
 
 
-def get_producto(db: Session, producto_id: str, producto_lote: str) -> Producto | None:
-    return db.execute(select(Producto).where(Producto._Producto__ID_PRODUCTO == producto_id, Producto._Producto__LOTE == producto_lote)).scalar()
+def get_producto(db: Session, producto_id: str, producto_lote: str, inve_id: str) -> Producto | None:
+    return db.execute(select(Producto).join(Categoria).join(Inventario).where(Producto._Producto__ID_PRODUCTO == producto_id, Producto._Producto__LOTE == producto_lote, Inventario._Inventario__ID_INVENTARIO == inve_id)).scalar()
 
 def create_producto(db: Session, producto: ProductoCreate, no_categoria: Categoria) -> Producto:
     db_producto = Producto(
@@ -37,8 +37,11 @@ def update_existencias(db: Session, producto: Producto, new_existencias: int) ->
 def update_categoria_producto(db: Session, producto: Producto, nueva_categoria: Categoria) -> Producto:
     producto.categoria = nueva_categoria
     db.commit()
-    db.refres(producto)
+    db.refresh(producto)
     return producto
+
+def get_productos(db: Session, inve_id: str):
+    return db.execute(select(Producto).join(Categoria).join(Inventario).where(Inventario._Inventario__ID_INVENTARIO == inve_id)).scalars().all()
 
 def get_productos_Categoria(db: Session, cate: Categoria):
     

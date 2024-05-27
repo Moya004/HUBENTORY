@@ -88,7 +88,7 @@ class Producto(Base):
     __LOTE: Mapped[str] = mapped_column('LOTE', String, nullable=False)
     __existencias: Mapped[int] = mapped_column('existencias', Integer, default=0)
 
-    __table_args__ = (PrimaryKeyConstraint('ID', 'LOTE'),)
+    __table_args__ = (PrimaryKeyConstraint('ID', 'LOTE', 'categoria_ID'),)
 
     def __init__(self, ID: str, NOMBRE: str, CADUCO: date, cat: Categoria, LOTE: str):
         self.__ID_PRODUCTO = ID
