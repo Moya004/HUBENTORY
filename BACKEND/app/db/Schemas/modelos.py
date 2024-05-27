@@ -4,18 +4,22 @@ from datetime import date
 class ProductoBase(BaseModel):
     NOMBRE: str
     CADUCO: date
-    ID_categoria: str
     LOTE: str
-    existencias: int
 
 class ProductoCreate(ProductoBase):
     ID: str
+    ID_categoria: str
 
-class ProductoUpdate(BaseModel):
+class ProductoUpdateExistensias(ProductoBase):
+    ID: str
     existencias: int
+
+class ProductoUpdateCategoria(ProductoBase):
+    ID_categoria: str
 
 class ProductoResponse(ProductoBase):
     ID: str
+    existencias: int
     class Config:
         from_attributes = True
 

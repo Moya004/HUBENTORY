@@ -2,7 +2,7 @@ from fastapi import APIRouter, File, UploadFile
 from fastapi import Depends, HTTPException, status
 from typing import List
 from datetime import date
-from db.Schemas.modelos import ProductoResponse, ProductoCreate
+from db.Schemas.modelos import ProductoResponse, ProductoCreate, ProductoUpdateExistensias
 from security.autenticacion import get_current_Persona
 from db.CRUD import categoria as categoria_crud, producto as producto_crud
 from db.sesion import get_db
@@ -76,3 +76,20 @@ def terminate_productos(curr_persona = Depends(get_current_Persona), db = Depend
         raise HTTPException(status_code=400, detail="el inventario no tiene productos")
     result = list(map(lambda x: ProductoResponse(NOMBRE=x.NOMBRE, CADUCO=x.CADUCO, ID_categoria=x.categoria.ID_CATEGORIA, LOTE=x.LOTE, ID=x.ID, existencias=x.existencias), result))
     return productos_inv
+
+
+@router.put('/RM/salida', response_model=ProductoResponse)
+def salidad_producto(saliente: ProductoUpdateExistensias, curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
+    in_inventario = producto_crud.get_producto(db, saliente.ID, saliente.LOTE, curr_persona.INVENTARIO.ID_INVENTARIO)
+    if not in_inventario:
+        raise HTTPException(status_code=404, detail="El producto no existe")
+    hoy = date.today()
+    if in_inventario.CADUCO <= hoy:
+        raise HTTPException(status_code=400, detail="El producto esta expirado")
+
+    remain = in_inventario.existencias - saliente.existencias
+    if remain < 0:
+        raise HTTPException(status_code=400, detail="no hay suficientes existencias")
+    
+    result = producto_crud.update_existencias(db, in_inventario, remain)
+    return ProductoResponse(NOMBRE=result.NOMBRE, CADUCO=result.CADUCO, LOTE=result.LOTE, ID= result.ID, existencias=result.existencias)
