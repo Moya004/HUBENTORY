@@ -17,7 +17,6 @@ class ProductoUpdateCategoria(ProductoBase):
     nombre_categoria: str
 
 class ProductoResponse(ProductoBase):
-    ID: str
     existencias: int
     class Config:
         from_attributes = True
