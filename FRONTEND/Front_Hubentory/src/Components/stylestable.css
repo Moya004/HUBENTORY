@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'principal'; 
+    src: url('../Fonts/Inter/Inter-Regular.ttf') format('truetype'); 
+}
+
+.data-table-container{
+    flex: 1; /* Hace que el contenido ocupe el espacio restante */
+    margin-left: 42px; /* Margen izquierdo igual al ancho del navbar-placeholder */
+    /* los dejare aqui por si tengo algun problema futuro */
+    /* transition: margin-left 0.3s; */
+    /*display: flex; /* Usa Flexbox */
+}
+.data-table-container input[type="text"] {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-family: 'principal', sans-serif;
+}
+
+.data-table-container img{
+    width: 90px;
+    height: auto;
+    position: relative;
+    left: 230PX;
+    top: 8px;
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 76vw;
+    height: auto;
+}
+
+.data-table th, .data-table td {
+    padding: 0.5rem;
+}
+
+.data-table thead tr {
+    background-color: transparent; /* Color de fondo para el encabezado */
+    color: #9f9ea2;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table tbody td {
+    color: #333; /* Color del texto para las celdas */
+  }
+  
+.data-table tbody tr td input[type="checkbox"] {
+    margin: 0;
+}
+
+.boxfilter{
+    position: relative;
+    left: 250px;
+    width: 200px;
+    height: 40px;
+    font-family: 'principal', sans-serif;
+
+}
+
+.container-btnpage{
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Opcional: Para centrar verticalmente */
+}
+
+
+.container-btnpage button{
+    position: relative;
+    left: 87%;
+    margin-right: 10px; 
+}
+
+.btnprevius,
+.btnext {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: background-image 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.btnext{
+    background-image: url('../assets/next.png');
+}
+
+.btnext:disabled {
+    background-image: url('../assets/next_disanbled.png');
+}
+
+.btnprevius{
+    background-image: url('../assets/previus.png');
+}
+
+.btnprevius:disabled {
+    background-image: url('../assets/previus_disanbled.png');
+}

@@ -1,0 +1,82 @@
+
+.containerlogin {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.background-rectangle {
+  position: absolute;
+  /* flex: 1; */
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #080808;
+}
+
+.login-form {
+  max-width: 300px;
+  position: relative;
+  left: 150%;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+ 
+  .login-form h1 {
+    margin-bottom: 20px;
+    position: relative;
+    left: 60px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form button {
+    width: 95%;
+    padding: 10px;
+    background-color: #54bcc0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #348486;
+  }
+  
+  .login-form button.singup{
+    position: relative;
+    top: 10px;
+    background-color: transparent; 
+    border: none; 
+    color: #252626;
+    font-weight: bold;
+    text-decoration: underline; 
+    padding: 0; 
+  }
+
+  .login-form button.singup:hover{
+    color: #348486;
+  }
+
+  .login-form img{
+    width: 50px;
+    height: auto;
+    position: relative;
+    left: 125px;
+  }

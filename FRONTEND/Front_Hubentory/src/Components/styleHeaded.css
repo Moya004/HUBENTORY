@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'principal'; 
+  src: url('../Fonts/Inter/Inter-Regular.ttf') format('truetype'); 
+}
+
+html, body{
+  height:100%;
+  margin:0;
+  display: flex;
+  /* flex-direction: row; */
+  font-family: 'principal', sans-serif;
+}
+
+.btn-previous,
+.btn-next,
+.btn-alerts{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+}
+
+.btn-previous img,
+.btn-next img{
+  width: 15px;
+  height: auto;
+}
+
+
+.btn-alerts img{
+  width: 35px;
+  height: auto;
+}
+
+.btn-next{
+  position: relative;
+  top: 0;
+  left: 45px;
+}
+
+.btn-previous{
+  position: relative;
+  top: 0;
+  left: 30px;
+}
+
+.btn-alerts{
+  position: relative;
+  top: 10px;
+  right: -900px;
+}

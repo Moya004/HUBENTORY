@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'InterLight'; 
+    src: url('../Fonts/Inter/Inter-ExtraLight.ttf') format('truetype'); 
+  }
+
+.Removal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.Removal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    min-width: 400px;
+    height: 150px;
+}
+
+.Removal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Removal-close img{
+    width: 35px;
+    height: auto;
+}
+
+.container-removal{
+    display: flex;
+    /* justify-content: space-between;  */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.container-btnremoval .btnCancel_Re,
+.container-btnremoval .btnRemoval{
+    position: relative;
+    left: 65%;
+    top: 7px;
+    margin: 2px;
+}
+
+.btnCancel_Re{
+    border: none;               
+    border-radius: 3px;
+    width: 40px;
+    height: 35px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+}
+
+.btnCancel_Re:hover{
+    background-color: #b9b9b9;
+    color: #fff;
+}
+
+.btnRemoval{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: #b52a4b;
+    color: #fff;
+}
+
+.btnRemoval:hover{
+    background-color: #8a1f38;
+    color: #fff;
+}

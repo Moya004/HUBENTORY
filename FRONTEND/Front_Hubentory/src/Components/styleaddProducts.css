@@ -1,0 +1,114 @@
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-wrapper {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 450px;
+    max-height: 520px;
+}
+
+.product-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.product-close img{
+    width: 35px;
+    height: auto;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-wrapper input,
+.form-wrapper select {
+    width: 100%;
+    padding: 10px; 
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px; /* Tamaño de la fuente */
+    background-color: #f4f3f4;
+}
+
+.form-wrapper select{
+    color: #aaa;
+}
+
+.form-wrapper input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.form-wrapper input:focus {
+    border-color: #007BFF; /* Color del borde al enfocar */
+    outline: none; /* Quitar el borde de enfoque predeterminado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+}
+
+.buttons-wrapper {
+    display: flex;
+    /* justify-content: space-between;  */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.buttons-wrapper .btnCancel_p,
+.buttons-wrapper .btnadd_p{
+    position: relative;
+    left: 65%;
+    top: 7px;
+    margin: 2px;
+}
+
+.btnCancel_p{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: transparent;
+    color: #333;
+    font-weight: bold;
+}
+
+.btnCancel_p:hover{
+    background-color: #df7979;
+    color: #fff;
+}
+
+.btnadd_p{
+    border: none;               
+    border-radius: 3px;
+    width: 80px;
+    height: 35px;
+    background-color: #477c9a;
+    color: #fff;
+}
+
+.btnadd_p:hover{
+    background-color: #305469;
+    color: #fff;
+}
