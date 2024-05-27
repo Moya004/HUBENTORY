@@ -2,20 +2,19 @@ from pydantic import BaseModel
 from datetime import date
 
 class ProductoBase(BaseModel):
+    ID: str
     NOMBRE: str
     CADUCO: date
     LOTE: str
 
 class ProductoCreate(ProductoBase):
-    ID: str
     ID_categoria: str
 
 class ProductoUpdateExistensias(ProductoBase):
-    ID: str
     existencias: int
 
 class ProductoUpdateCategoria(ProductoBase):
-    ID_categoria: str
+    nombre_categoria: str
 
 class ProductoResponse(ProductoBase):
     ID: str

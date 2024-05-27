@@ -24,7 +24,7 @@ def parse_file(entrada: File) -> list[tuple]:
     return parsed
     
 
-@router.put('/RM/entrada', response_model=List[ProductoResponse])
+@router.post('/RM/entrada', response_model=List[ProductoResponse])
 def entrada_productos(archivo: UploadFile = File(...), curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
     file_ext = archivo.filename.split('.').pop()
     if file_ext != 'txt':

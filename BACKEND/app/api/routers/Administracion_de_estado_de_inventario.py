@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi import Depends, HTTPException, status
-from db.Schemas.modelos import InventarioUpdateNombre, CategoriaResponse, InventarioResponse, CategoriaCreate
+from db.Schemas.modelos import InventarioUpdateNombre, CategoriaResponse, InventarioResponse, CategoriaCreate, ProductoUpdateCategoria, ProductoResponse
 from security.autenticacion import get_current_Persona
 from db.CRUD import inventario as inventario_crud, categoria as categoria_crud, producto as producto_crud
 from db.sesion import get_db
@@ -28,7 +28,7 @@ def create_categoria(nueva_categoria: str, curr_persona = Depends(get_current_Pe
 def update_nombre_inventario(nombre_categoria:str, update_nombre: str, curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
     categoria = categoria_crud.get_categoria(db, nombre_categoria, curr_persona.INVENTARIO)
     if not categoria:
-        raise HTTPException(status_code=404, detail="La categoria no existe")
+        raise HTTPException(status_code=404, detail="La categoria no existe en inventario")
     result = categoria_crud.update_nombre(db, categoria, update_nombre)
     return CategoriaResponse(Nombre=result.nombre, ID_inventario=result.INVENTARIO.ID_INVENTARIO, ID_categoria=result.ID_CATEGORIA)
 
@@ -36,7 +36,7 @@ def update_nombre_inventario(nombre_categoria:str, update_nombre: str, curr_pers
 def delete_categoria(nombre_categoria:str, curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
     categoria = categoria_crud.get_categoria(db, nombre_categoria, curr_persona.INVENTARIO)
     if not categoria:
-        raise HTTPException(status_code=404, detail="La categoria no existe")
+        raise HTTPException(status_code=404, detail="La categoria no existe en inventario")
     no_categoria = categoria_crud.get_categoria_null(db, curr_persona.INVENTARIO)
     related_products = producto_crud.get_productos_Categoria(db, categoria)
     if related_products:
@@ -44,3 +44,15 @@ def delete_categoria(nombre_categoria:str, curr_persona = Depends(get_current_Pe
             producto_crud.update_categoria_producto(db, producto, no_categoria)
     result = categoria_crud.delete_categoria(db, categoria)
     return CategoriaResponse(Nombre=result.nombre, ID_inventario=result.INVENTARIO.ID_INVENTARIO, ID_categoria=result.ID_CATEGORIA)
+
+
+@router.put('/AEI/modificar/producto/', response_model=ProductoResponse)
+def update_categoria_producto(modificado: ProductoUpdateCategoria, curr_persona = Depends(get_current_Persona), db = Depends(get_db)):
+    in_inventario = producto_crud.get_producto(db, modificado.ID, modificado.LOTE, curr_persona.INVENTARIO.ID_INVENTARIO)
+    if not in_inventario:
+        raise HTTPException(status_code=404, detail="el producto no se encuentra en inventario")
+    categoria = categoria_crud.get_categoria(db, modificado.nombre_categoria, curr_persona.INVENTARIO)
+    if not categoria:
+        raise HTTPException(status_code=404, detail="La categoria no existe en inventario")
+    result = producto_crud.update_categoria_producto(db, in_inventario, categoria)
+    return ProductoResponse(ID=result.ID, NOMBRE=result.NOMBRE, CADUCO=result.CADUCO, LOTE=result.LOTE, existencias=result.existencias)
