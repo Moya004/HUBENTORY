@@ -31,7 +31,8 @@ class Inventario(Base):
     def NOMBRE(self, new_name: str) -> None:
         self.__nombre = new_name
 
-    def __hash__(self) -> int: ...
+    def __hash__(self) -> int:
+        return hash(self.__ID_INVENTARIO)
 
 @dataclass
 class Categoria(Base):
@@ -68,7 +69,7 @@ class Categoria(Base):
         self.__nombre = value
     
     def __hash__(self) -> int:
-        return hash(self.__ID_CATEGORIA, self.__INVENTARIO_ID)
+        return hash((self.__ID_CATEGORIA, self.__INVENTARIO_ID))
     
 
 
@@ -136,4 +137,4 @@ class Producto(Base):
         self.__existencias = value
 
     def __hash__(self) -> int:
-        return hash(self.__CADUCO, self.__ID_PRODUCTO, self.__NOMBRE, self.__LOTE)
+        return hash((self.__CADUCO, self.__ID_PRODUCTO, self.__NOMBRE, self.__LOTE))
