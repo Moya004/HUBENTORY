@@ -319,6 +319,10 @@ node_modules
 
 *.sublime*
 
+
+BACKEND/libs/
+BACKEND/aws_lambda_artifact.zip
+
 psd
 thumb
 sketch

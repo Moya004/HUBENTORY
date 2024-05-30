@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status
+from mangum import Mangum
 from sqlalchemy.orm import Session
 
 from typing import Annotated
@@ -16,6 +17,7 @@ import uvicorn
 from api.routers import Administracion_de_estado_de_inventario, Registro_de_movimientos, Consulta_de_informacion
 
 hubentory = FastAPI()
+
 
 hubentory.include_router(Administracion_de_estado_de_inventario.router)
 hubentory.include_router(Registro_de_movimientos.router)
@@ -51,6 +53,6 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-
+handler = Mangum(hubentory)
 if __name__ == '__main__':
     uvicorn.run('main:hubentory', reload=True)
