@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from mangum import Mangum
 from sqlalchemy.orm import Session
+from fastapi.middleware.cors import CORSMiddleware
 
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
@@ -22,6 +23,15 @@ hubentory = FastAPI()
 hubentory.include_router(Administracion_de_estado_de_inventario.router)
 hubentory.include_router(Registro_de_movimientos.router)
 hubentory.include_router(Consulta_de_informacion.router)
+
+hubentory.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @hubentory.get('/')
 def root():
